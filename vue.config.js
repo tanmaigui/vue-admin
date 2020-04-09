@@ -12,18 +12,18 @@ module.exports = {
   chainWebpack: (config) => {
   },
   configureWebpack: (config) => {
-    // config.resolve = { // 配置解析别名
-    //   extensions: ['.js', '.json', '.vue'],
-    //   alias: {
-    //     '@': path.resolve(__dirname, './src'),
-    //     'public': path.resolve(__dirname, './public'),
-    //     'components': path.resolve(__dirname, './src/components'),
-    //     'common': path.resolve(__dirname, './src/common'),
-    //     'api': path.resolve(__dirname, './src/api'),
-    //     'views': path.resolve(__dirname, './src/views'),
-    //     'data': path.resolve(__dirname, './src/data')
-    //   }
-    // }
+    config.resolve = { // 配置解析别名
+      extensions: ['.js', '.json', '.vue'],
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+        'public': path.resolve(__dirname, './public'),
+        'components': path.resolve(__dirname, './src/components'),
+        'common': path.resolve(__dirname, './src/common'),
+        'api': path.resolve(__dirname, './src/api'),
+        'views': path.resolve(__dirname, './src/views'),
+        'data': path.resolve(__dirname, './src/data')
+      }
+    }
   },
   // 生产环境是否生成 sourceMap 文件
   productionSourceMap: false,
@@ -58,6 +58,15 @@ module.exports = {
     hot: true, // 开启热加载
     hotOnly: false,
     proxy: null, // 设置代理
+    proxy: { 
+      '/api': {  //使用"/api"来代替"http://f.apiplus.c" 
+        target: 'https://www.web-jshtml.cn/productapi', //源地址 
+        changeOrigin: true, //改变源 
+        pathRewrite: { 
+          '^/api': '' //路径重写 
+          } 
+      } 
+    },
     overlay: { // 全屏模式下是否显示脚本错误
       warnings: true,
       errors: true
