@@ -37,7 +37,8 @@
                 </el-form-item>
 
                 <el-form-item>
-                    <el-button type="danger" @click="submitForm('ruleForm')" class="login-btn block" :disabled="anniu">{{ model==='login' ? "登录" : "注册"}}</el-button>
+                     <!-- :disabled="anniu" -->
+                    <el-button type="danger" @click="submitForm('ruleForm')" class="login-btn block">{{ model==='login' ? "登录" : "注册"}}</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -92,7 +93,7 @@ export default {
 
         //模块值
         const model = ref('login')
-        const anniu =ref('true')
+        // const anniu =ref('true')
 
         //model.value 取值
         //表单绑定数据
@@ -142,6 +143,10 @@ export default {
          */
         const submitForm = (formName =>{
 
+            root.$router.push({
+                name: 'Console'
+            });
+
             // axios.request({
             //     method: 'post',
             //     url: '/user/12345',
@@ -177,7 +182,7 @@ export default {
         return {
             menuTab,
             model,
-            anniu,
+            // anniu,
             ruleForm,
             rules,
             toggleMneu,
